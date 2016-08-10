@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		ButterKnife.bind(this);
-		;
+
 //		serviceAddLibrary();
 		mBtnListar.setOnClickListener(new View.OnClickListener() {
 			@Override public void onClick(View view) {
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 		libraryRaw.url = "www.google.com";
 		libraryRaw.version = "4.4";
 		Call<LibraryResponse.Data> dataCall = AdapterFactory
-				.retrofitServiceAutoHeader(LibraryService.class)
+				.retrofitServiceAutoHeader(LibraryAutoHeaderService.class)
 				.addLibrary(libraryRaw);
 
 		dataCall.enqueue(new Callback<LibraryResponse.Data>() {
@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
 
 	private void serviceDeleteLibrary() {
 		Call<LibraryResponse> libraryResponseCall = AdapterFactory
-				.retrofitServiceAutoHeader(LibraryService.class)
+				.retrofitServiceAutoHeader(LibraryAutoHeaderService.class)
 				.deleteLibrary("8C7688FA-C0DF-5C9B-FFC0-BE9858B24E00");
 
 		libraryResponseCall.enqueue(new Callback<LibraryResponse>() {
@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
 		libraryRaw.version = "4.4";
 		libraryRaw.objectId = "2EF214D6-8FC2-B802-FF73-BE0341C3E100";
 		Call<LibraryResponse.Data> libraryResponseCall = AdapterFactory
-				.retrofitServiceAutoHeader(LibraryService.class)
+				.retrofitServiceAutoHeader(LibraryAutoHeaderService.class)
 				.updateLibrary(libraryRaw.objectId,libraryRaw);
 		libraryResponseCall.enqueue(new Callback<LibraryResponse.Data>() {
 			@Override public void onResponse(Call<LibraryResponse.Data> call, Response<LibraryResponse.Data> response) {
